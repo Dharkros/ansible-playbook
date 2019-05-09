@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+  tasks:
+        - name: Instalando apache 2
+          apt: name=apache2 state=installed
+        - name: Estado de apache es activo
+          service: name=apache2 state=started enabled=yes
+...
+

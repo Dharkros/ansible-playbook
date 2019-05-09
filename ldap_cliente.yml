@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: true
+  tasks:
+        - name: Instalacion Escritorio
+          apt: name=lubuntu-desktop state=installed
+        
+        - name: Instalacion de LDAP cliente
+          apt: name={{ item }} state=installed
+          with_items:
+                  - libnss-ldap
+                  - libpam-ldap
+        
+        - name: Configuracion nsswitch LDAP
+          copy: src=template/nss_cliente dest=/etc/nsswitch.conf
+        
+        - name: Configuracion common-session LDAP
+          copy: src=template/common-session dest=/etc/pam.d/common-session
+       
+        - name: Configuracion common-password LDAP
+          copy: src=template/common-password dest=/etc/pam.d/common-password
+
+        - name: Configuracion ldap.conf LDAP
+          copy: src=template/ldap.conf_cliente dest=/etc/ldap/ldap.conf
+       
+        #- name: restart slapd
+        #  copy: name=template/slapd state=restarted enabled=yes
