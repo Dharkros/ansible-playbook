@@ -5,8 +5,8 @@
         - name: Instalacion Escritorio
           apt: name={{ item }} state=installed
           with_items:
-                  #- lubuntu-desktop
-                  - ubuntu-mate-desktop      
+                  - xubuntu-desktop
+   
         - name: Instalacion de LDAP cliente
           apt: name={{ item }} state=installed
           with_items:
@@ -27,3 +27,6 @@
 
         - name: Configuracion ldap/ldap.conf LDAP
           copy: src=template/ldap/ldap.conf_cliente dest=/etc/ldap/ldap.conf
+          
+         - name: Reboot immediately.
+           shell: "init 6"
