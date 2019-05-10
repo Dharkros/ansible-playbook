@@ -3,8 +3,10 @@
   become: true
   tasks:
         - name: Instalacion Escritorio
-          apt: name=lubuntu-desktop state=installed
-        
+          apt: name={{ item }} state=installed
+          with_items:
+                  #- lubuntu-desktop
+                  - ubuntu-mate-desktop      
         - name: Instalacion de LDAP cliente
           apt: name={{ item }} state=installed
           with_items:
@@ -21,7 +23,7 @@
           copy: src=template/common-password dest=/etc/pam.d/common-password
 
         - name: Configuracion ldap.conf LDAP
-          copy: src=template/ldap.conf_cliente dest=/etc/ldap/ldap.conf
-       
-        #- name: restart slapd
-        #  copy: name=template/slapd state=restarted enabled=yes
+          copy: src=template/ldap.conf_cliente dest=/etc/ldap.conf
+
+        - name: Configuracion ldap/ldap.conf LDAP
+          copy: src=template/ldap/ldap.conf_cliente dest=/etc/ldap.conf  /etc/ldap/ldap.conf
