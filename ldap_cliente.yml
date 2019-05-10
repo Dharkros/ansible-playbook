@@ -23,7 +23,7 @@
           copy: src=template/common-password dest=/etc/pam.d/common-password
 
         - name: Configuracion ldap.conf LDAP
-          copy: src=template/ldap.conf_cliente dest=/etc/ldap.conf
+          copy: src=template/ldap.conf dest=/etc/ldap.conf
 
         - name: Configuracion ldap/ldap.conf LDAP
-          copy: src=template/ldap/ldap.conf_cliente dest=/etc/ldap.conf  /etc/ldap/ldap.conf
+          copy: src=template/ldap/ldap.conf_cliente dest=/etc/ldap/ldap.conf
