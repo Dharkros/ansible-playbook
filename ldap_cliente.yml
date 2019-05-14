@@ -27,6 +27,6 @@
 
         - name: Configuracion ldap/ldap.conf LDAP
           copy: src=template/ldap/ldap.conf_cliente dest=/etc/ldap/ldap.conf
-          
-         - name: Reboot immediately.
-           shell: "init 6"
+       
+        - name: Reinicio del SO
+          shell: "init 6"
