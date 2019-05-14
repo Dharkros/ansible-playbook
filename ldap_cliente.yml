@@ -29,4 +29,4 @@
           copy: src=template/ldap/ldap.conf_cliente dest=/etc/ldap/ldap.conf
        
         - name: Reinicio del SO
-          shell: "init 6"
+          shell: "sudo reboot"
