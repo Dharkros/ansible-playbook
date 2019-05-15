@@ -29,4 +29,5 @@
           copy: src=template/ldap/ldap.conf_cliente dest=/etc/ldap/ldap.conf
        
         - name: Reinicio del SO
-          shell: "sudo reboot"
+          reboot:
+             reboot_timeout: 3600
