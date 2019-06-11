@@ -1,0 +1,17 @@
+---
+# Forma de ejecusion: 
+# ansible-playbook --connection=local --inventory 127.0.0.1, playbook.yml
+
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  tasks:
+
+  - name: Imprimir hostname del target
+    command: hostname
+  
+  - name: ensure git is installed
+    apt: 
+       name: git 
+       state: present 
