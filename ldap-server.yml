@@ -1,0 +1,30 @@
+---
+- hosts: all
+  become: true
+  tasks:
+        - name: Instalacion de paquetes
+          apt: name={{ item }} state=installed
+          with_items:
+                  - slapd
+                  - ldap-utils
+                  - phpldapadmin
+
+        - name: Configuración de LDAP
+          copy: 
+              src: template/ldap.conf_server 
+              dest: /etc/ldap/ldap.conf
+          copy: 
+               src: template/config.php_server 
+               dest: /etc/phpldapadmin/config.php
+          copy: 
+               src: template/functions.php_server 
+               dest: /usr/share/phpldapadmin/lib/functions.php
+#         copy:
+#              src: template/clave-ldap_server
+#              dest: /etc/ldap/slapd.d/cn=config/olcDatabase={1}mdb.ldif
+
+        - name: Reload LDAP service
+          service:
+                  name: slapd
+                  state: restarted
+
